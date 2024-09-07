@@ -147,13 +147,13 @@ export default function TransactionModal({ type }: props) {
                                         )}
                                     />
                                     {/* here we will render a select component for type of expense */}
-                                    <Controller
+                                    {/* <Controller
                                         name="category"
                                         control={control}
                                         render={({ field }) => (
                                             <ExpenseSelection type={type} {...field} />
                                         )}
-                                    />
+                                    /> */}
                                     <p>
                                         {errors.category?.message}
                                     </p>

@@ -1,3 +1,5 @@
+'use server';
+
 import React from 'react'
 import { currentUser } from '@clerk/nextjs/server'
 import { redirect } from 'next/navigation'
@@ -22,7 +24,7 @@ async function Wizard() {
                     Welcome, <span className={`${poppins.className} ml-2 font-bold`}>{user.firstName}!</span>
                 </h1>
                 <h2 className={`${roboto.className} mt-4 text-center text-base text-foreground`}>
-                    Let &apos;s get started by setting up your currency
+                    Let's get started by setting up your currency
                 </h2>
                 <h3 className={`${inter.className}  mt-4 text-center text-sm text-foreground`}>
                     You can change this setting at any time
