@@ -8,7 +8,7 @@ import { fontSans } from "@/config/fonts";
 
 export const metadata: Metadata = {
   title: "Expense Tracker",
-  description: "App made by me",
+  description: "Track your income and expenses with ease. Create, categorize, and manage your transactions. View detailed stats, monitor your financial progress with interactive bar graphs, and analyze previous transactions in a comprehensive table. Customize your currency settings for a personalized experience."
 };
 
 export const viewport: Viewport = {

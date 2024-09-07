@@ -8,7 +8,6 @@ function template({ children }: { children: ReactNode }) {
 
         <AnimatePresence mode="wait" initial={false}>
             <motion.div
-
                 key={pathname}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
