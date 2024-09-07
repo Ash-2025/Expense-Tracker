@@ -1,10 +1,10 @@
 "use client";
 
+import React from 'react'
 import { inter, poppins } from '@/lib/fonts';
 import { CalendarDate, DateValue, parseDate } from '@internationalized/date';
 import { DatePicker, DateRangePicker } from '@nextui-org/date-picker';
 import { RangeValue } from '@nextui-org/calendar';
-import React from 'react'
 import TransactionTable from './_components/TransactionTable';
 
 function Transaction() {

@@ -1,10 +1,11 @@
 "use client";
+
+import React from 'react'
 import { inter, poppins } from '@/lib/fonts';
 import { CalendarDate, parseDate, toTimeZone } from '@internationalized/date';
 import { RangeValue } from '@nextui-org/calendar';
 import { DateRangePicker } from '@nextui-org/date-picker'
 import { UserSettings } from '@prisma/client'
-import React from 'react'
 import StatsCards from './StatsCards';
 import CategoryStats from './CategoryStats';
 

@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import { TransactionType } from "@/lib/types";
 import { ReactNode } from "react";
 import { Modal, ModalBody, ModalContent, ModalHeader, useDisclosure } from '@nextui-org/modal'
@@ -16,7 +17,6 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import ExpenseSelection from "./ExpenseSelection";
 
 import { z } from "zod";
-import React from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { CreateTransaction } from "../_actions/transaction";
 import { toast } from "sonner";

@@ -1,14 +1,14 @@
 "use client";
 
+import React from 'react'
 import { getCategoryStatsResponseType } from '@/app/api/stats/categories/route';
 import { inter, roboto } from '@/lib/fonts';
 import { DatetoUTCDate, GetFormatterForCurrency } from '@/lib/helpers';
 import { TransactionType } from '@/lib/types';
 import { Card, CardHeader } from '@nextui-org/card';
-import {Progress} from '@nextui-org/progress'
+import { Progress } from '@nextui-org/progress'
 import { UserSettings } from '@prisma/client';
 import { useQuery } from '@tanstack/react-query';
-import React from 'react'
 interface props {
     usersettings: UserSettings,
     start: Date,
@@ -53,7 +53,7 @@ function CategoryCard({ data, type, formatter }: {
         // wrap this in a skeleton
         <Card className='h-80 w-full col-span-6 mx-3 my-3'>
             <CardHeader className={`${roboto.className} grid grid-flow-row justify-between gap-2 md:grid-flow-col text-xl`}>
-                {type==="income" ? "Incomes":"Expenses"} by Category
+                {type === "income" ? "Incomes" : "Expenses"} by Category
             </CardHeader>
 
             <div className="flex items-center justify-between gap-2">
@@ -70,7 +70,7 @@ function CategoryCard({ data, type, formatter }: {
                         <div className="flex w-full flex-col gap-4 p-4">
                             {filteredData.map((item) => {
                                 const amount = item._sum.amount || 0;
-                                const percentage = (amount * 100)/(total || amount);
+                                const percentage = (amount * 100) / (total || amount);
                                 return (
                                     <div className='flex flex-col gap-2'>
                                         <div className='flex items-center justify-between'>
@@ -90,7 +90,7 @@ function CategoryCard({ data, type, formatter }: {
                                             size='sm'
                                             value={percentage}
                                             classNames={{
-                                                indicator:type==="income"? 'bg-emerald-500':'bg-rose-700'
+                                                indicator: type === "income" ? 'bg-emerald-500' : 'bg-rose-700'
                                             }}
                                         />
                                     </div>

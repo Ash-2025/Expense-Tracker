@@ -1,16 +1,17 @@
 "use client";
+
+import React from 'react'
 import { inter, poppins } from '@/lib/fonts';
 import { GetFormatterForCurrency } from '@/lib/helpers';
 import { TimeFrame, period } from '@/lib/types';
 import { Card, CardHeader, CardBody } from '@nextui-org/card';
 import { UserSettings } from '@prisma/client';
-import React from 'react'
 import HistoryPeriodSelector from './HistoryPeriodSelector';
 import { useQuery } from '@tanstack/react-query';
 
 import { Bar, BarChart, CartesianGrid, ResponsiveContainer, XAxis, YAxis } from "recharts"
 import { getHistoryDataResponseType } from '@/app/api/history-data/route';
-import { Tooltip } from '@nextui-org/tooltip';
+
 
 function History({ usersettings }: { usersettings: UserSettings }) {
   const [Timeframe, setTimeframe] = React.useState<TimeFrame>("month");

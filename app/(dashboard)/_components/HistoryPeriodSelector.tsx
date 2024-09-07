@@ -1,4 +1,6 @@
 "use client";
+
+import React from 'react'
 import { getHistoryPeriodsResponseType } from '@/app/api/history-periods/route';
 import { inter } from '@/lib/fonts';
 import { period, TimeFrame } from '@/lib/types';
@@ -6,7 +8,6 @@ import { Select, SelectItem } from '@nextui-org/select';
 import { Tab, Tabs } from '@nextui-org/tabs';
 import { useQuery } from '@tanstack/react-query';
 import { CalendarSearch } from 'lucide-react';
-import React from 'react'
 
 interface props {
   period: period,

@@ -1,4 +1,6 @@
 "use client";
+
+import React, { ReactNode } from 'react'
 import { getBalanceStatsResponseType } from '@/app/api/stats/balance/route';
 import { inter } from '@/lib/fonts';
 import { DatetoUTCDate, GetFormatterForCurrency } from '@/lib/helpers';
@@ -6,7 +8,6 @@ import { Card } from '@nextui-org/card';
 import { UserSettings } from '@prisma/client';
 import { useQuery } from '@tanstack/react-query';
 import { TrendingDown, TrendingUp, Wallet } from 'lucide-react';
-import React, { ReactNode } from 'react'
 import CountUp from 'react-countup'
 interface props {
     usersettings: UserSettings,

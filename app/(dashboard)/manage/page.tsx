@@ -1,8 +1,8 @@
 'use client';
+import React from 'react'
 import SelectCurrency from '@/components/SelectCurrency';
 import { roboto } from '@/lib/fonts';
 import { Card, CardBody, CardHeader } from '@nextui-org/card';
-import React from 'react'
 
 function Manage() {
     return (

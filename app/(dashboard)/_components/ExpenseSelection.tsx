@@ -1,10 +1,11 @@
 "use client";
+
+import React from 'react';
 import { expenseCategories, incomeCategories } from '@/lib/data';
 import { inter, roboto } from '@/lib/fonts'
 import { TransactionType } from '@/lib/types'
 import { Autocomplete, AutocompleteItem } from '@nextui-org/autocomplete';
 import { useQuery } from '@tanstack/react-query';
-import React from 'react';
 import { Key } from '@react-types/shared'
 import { ControllerRenderProps } from 'react-hook-form';
 import { Category } from '@prisma/client';
@@ -13,7 +14,7 @@ interface Props extends ControllerRenderProps {
     type: TransactionType
 }
 
-const ExpenseSelection = React.forwardRef(({ type,onChange }: Props,ref) => {
+const ExpenseSelection = React.forwardRef(({ type, onChange }: Props, ref) => {
     const categoriesQuery = useQuery<Category>({
         queryKey: ["categories", type],
         queryFn: () => fetch(`/api/categories?type=${type}`).then(res => res.json())
@@ -25,7 +26,7 @@ const ExpenseSelection = React.forwardRef(({ type,onChange }: Props,ref) => {
     // this will help us use onChange function to update the form tracker value for this specific field
     const [open, setopen] = React.useState(false);
     const [Val, setVal] = React.useState<Key | undefined | null>('');
-    const [customVal, setcustomVal] = React.useState<string|null>('');
+    const [customVal, setcustomVal] = React.useState<string | null>('');
     const fieldchange = (Value: string) => {
         setcustomVal(Value)
         onChange(Value);
@@ -55,7 +56,7 @@ const ExpenseSelection = React.forwardRef(({ type,onChange }: Props,ref) => {
                         setcustomVal(null);
                     }
                 }}
-                
+
             >
                 {
                     type === "income" ?
@@ -75,7 +76,7 @@ const ExpenseSelection = React.forwardRef(({ type,onChange }: Props,ref) => {
                         )
                 }
             </Autocomplete>
-           
+
         </>
     )
 })
