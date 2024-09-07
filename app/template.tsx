@@ -2,7 +2,7 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import React, { ReactNode } from 'react'
 import { usePathname } from 'next/navigation'
-function template({ children }: { children: ReactNode }) {
+function Template({ children }: { children: ReactNode }) {
     const pathname = usePathname();
     return (
 
@@ -20,7 +20,7 @@ function template({ children }: { children: ReactNode }) {
     )
 }
 
-export default template
+export default Template
 // initial={{ opacity: 0 }}
 // animate={{ opacity: 1 }}
 // exit={{ opacity: 0 }}

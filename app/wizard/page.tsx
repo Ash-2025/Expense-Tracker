@@ -4,18 +4,19 @@ import { redirect } from 'next/navigation'
 import { inter, poppins, roboto } from '@/lib/fonts'
 import { Divider } from '@nextui-org/divider'
 import { Card, CardHeader, CardBody } from '@nextui-org/card'
-import {Button} from '@nextui-org/button'
+import { Button } from '@nextui-org/button'
 import Link from 'next/link'
 import SelectCurrency from '@/components/SelectCurrency'
 import Logo from '@/components/Logo'
-async function page() {
+
+async function Wizard() {
     const user = await currentUser();
     if (!user) {
         redirect("/sign-in")
     }
     return (
         <div className='container mx-auto flex max-w-2xl flex-col items-center justify-between gap-4'>
-            <Logo/>
+            <Logo />
             <div>
                 <h1 className={`${poppins.className} text-center text-3xl`}>
                     Welcome, <span className={`${poppins.className} ml-2 font-bold`}>{user.firstName}!</span>
@@ -34,7 +35,7 @@ async function page() {
                 <CardBody className='text-lg'>
                     <p>Set your default currency for transactions</p>
                 </CardBody>
-                <SelectCurrency label='Select or change currency'/>
+                <SelectCurrency label='Select or change currency' />
             </Card>
             <Divider orientation='horizontal' className='w-5/6 mx-auto sm:w-full' />
 
@@ -47,4 +48,4 @@ async function page() {
     )
 }
 
-export default page
+export default Wizard

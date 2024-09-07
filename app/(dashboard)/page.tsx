@@ -8,7 +8,8 @@ import { Button } from '@nextui-org/button';
 import TransactionModal from './_components/TransactionModal';
 import Overview from './_components/Overview';
 import History from './_components/History';
-export default async function page() {
+
+export default async function Page() {
   const user = await currentUser();
   if (!user) redirect("/sign-in")
 

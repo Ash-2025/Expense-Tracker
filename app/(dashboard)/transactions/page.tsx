@@ -7,7 +7,7 @@ import { RangeValue } from '@nextui-org/calendar';
 import React from 'react'
 import TransactionTable from './_components/TransactionTable';
 
-function page() {
+function Transaction() {
   const formattedDate = new Date().toISOString().split('T')[0];
   const dates: RangeValue<CalendarDate> = {
     start: parseDate(formattedDate),
@@ -43,4 +43,4 @@ function page() {
   )
 }
 
-export default page
+export default Transaction

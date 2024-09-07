@@ -4,7 +4,7 @@ import { roboto } from '@/lib/fonts';
 import { Card, CardBody, CardHeader } from '@nextui-org/card';
 import React from 'react'
 
-function page() {
+function Manage() {
     return (
         <>
             <div className=''>
@@ -35,4 +35,4 @@ function page() {
     )
 }
 
-export default page
+export default Manage
