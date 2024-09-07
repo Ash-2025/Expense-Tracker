@@ -68,11 +68,11 @@ function CategoryCard({ data, type, formatter }: {
                 {filteredData.length > 0 && (
                     <div className="h-60 w-full px-4 overflow-y-auto">
                         <div className="flex w-full flex-col gap-4 p-4">
-                            {filteredData.map((item) => {
+                            {filteredData.map((item, index) => {
                                 const amount = item._sum.amount || 0;
                                 const percentage = (amount * 100) / (total || amount);
                                 return (
-                                    <div className='flex flex-col gap-2'>
+                                    <div className='flex flex-col gap-2' key={index}>
                                         <div className='flex items-center justify-between'>
                                             <span className={`${inter.className} flex items-center text-foreground-800 text-lg`}>
                                                 {item.category}

@@ -1,6 +1,5 @@
 'use client';
 import React, { Key, useState } from 'react'
-import { Autocomplete, AutocompleteItem } from '@nextui-org/autocomplete'
 import { inter } from '@/lib/fonts';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { UserSettings } from '@prisma/client';
