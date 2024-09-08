@@ -3,26 +3,39 @@ import { OverviewQuerySchema } from "@/schema/overview";
 import { currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 
-export async function GET(request:Request){
+export async function GET(request: Request) {
     const user = await currentUser();
-    if(!user){
-        redirect("/sign-in");
+    if (!user) {
+        // Properly handle redirection
+        return Response.redirect("/sign-in");
     }
-    const {searchParams} = new URL(request.url);
+
+    const { searchParams } = new URL(request.url);
     const start = searchParams.get("start");
     const end = searchParams.get("end");
 
-    const queryParams = OverviewQuerySchema.safeParse({start, end});
-    if(!queryParams.success){
-        throw new Error(queryParams.error.message)
+    const queryParams = OverviewQuerySchema.safeParse({ start, end });
+    if (!queryParams.success) {
+        // Throw an error with a proper response
+        return new Response(JSON.stringify({ error: queryParams.error.message }), {
+            status: 400,
+            headers: { 'Content-Type': 'application/json' }
+        });
     }
+
     const stats = await getCategoryStats(
         user.id,
         queryParams.data.start,
         queryParams.data.end
-    )
-    return Response.json(stats);
+    );
+
+    // Return the stats as a JSON response
+    return new Response(JSON.stringify(stats), {
+        status: 200,
+        headers: { 'Content-Type': 'application/json' }
+    });
 }
+
 
 export type getCategoryStatsResponseType = Awaited<ReturnType<typeof getCategoryStats>>
 async function getCategoryStats(userId: string, start:Date, end:Date){

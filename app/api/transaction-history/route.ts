@@ -4,27 +4,35 @@ import { OverviewQuerySchema } from "@/schema/overview";
 import { currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 
-export async function GET(request: Request){
+export async function GET(request: Request) {
     const user = await currentUser();
-    if(!user) redirect("/sign-in")
-
-    const {searchParams} = new URL(request.url)
-    const start = searchParams.get("start")
-    const end = searchParams.get("end")
-
-    const queryParams = OverviewQuerySchema.safeParse({
-        start,end
-    })
-    if(!queryParams.success){
-        return Response.json(queryParams.error.message, {
-            status: 400
-        })
+    if (!user) {
+        // Properly handle redirection
+        return Response.redirect("/sign-in");
     }
 
-    const transactions = await getTransactionHistory(user.id,queryParams.data.start,queryParams.data.end)
+    const { searchParams } = new URL(request.url);
+    const start = searchParams.get("start");
+    const end = searchParams.get("end");
 
-    return Response.json(transactions);
+    const queryParams = OverviewQuerySchema.safeParse({ start, end });
+    if (!queryParams.success) {
+        // Return JSON with error message and status code 400
+        return new Response(JSON.stringify({ error: queryParams.error.message }), {
+            status: 400,
+            headers: { 'Content-Type': 'application/json' }
+        });
+    }
+
+    const transactions = await getTransactionHistory(user.id, queryParams.data.start, queryParams.data.end);
+
+    // Return transactions as JSON with status code 200
+    return new Response(JSON.stringify(transactions), {
+        status: 200,
+        headers: { 'Content-Type': 'application/json' }
+    });
 }
+
 
 export type getTransactionHistoryResponseType = Awaited<ReturnType<typeof getTransactionHistory>>
 

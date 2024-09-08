@@ -12,7 +12,10 @@ const getHistoryDataSchema = z.object({
 })
 export async function GET(request: Request) {
     const user = await currentUser();
-    if (!user) redirect("/sign-in");
+    if (!user) {
+        // Properly handle redirection
+        return Response.redirect("/sign-in");
+    }
 
     const { searchParams } = new URL(request.url);
     const timeframe = searchParams.get("timeframe");
@@ -23,18 +26,28 @@ export async function GET(request: Request) {
         timeframe,
         year,
         month,
-    })
+    });
+
     if (!queryParams.success) {
-        return Response.json(queryParams.error.message, {
-            status: 400
-        })
+        // Return a valid response with error message
+        return new Response(JSON.stringify({ error: queryParams.error.message }), {
+            status: 400,
+            headers: { 'Content-Type': 'application/json' }
+        });
     }
+
     const data = await getHistoryData(user.id, queryParams.data.timeframe, {
         month: queryParams.data.month,
-        year: queryParams.data.year
-    })
-    return Response.json(data);
+        year: queryParams.data.year,
+    });
+
+    // Return a valid JSON response
+    return new Response(JSON.stringify(data), {
+        status: 200,
+        headers: { 'Content-Type': 'application/json' }
+    });
 }
+
 
 export type getHistoryDataResponseType = Awaited<ReturnType<typeof getHistoryData>>
 
